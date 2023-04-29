@@ -1,41 +1,37 @@
 #include "lists.h"
 
-
-
 /**
 
- * free_list - free the memory allocated to a linked list
+  *free_list - frees a list_t
 
- * @head: a double pointer to a linked list
+  *@head: pointer to head of list.
 
- * Return: nothing
+  *
 
- */
+  *Return: 0.
+
+  */
 
 void free_list(list_t *head)
 
 {
 
-	list_t *current, *next;
+	list_t *temp;
 
 
 
-	current = head;
-
-
-
-	while (!current)
+	while (head != NULL)
 
 	{
 
-		next = current->next;
+		temp = head;
 
-		free(current);
+		free(temp->str);
 
-		current = next;
+		head = head->next;
+
+		free(temp);
 
 	}
-
-	head = NULL;
 
 }

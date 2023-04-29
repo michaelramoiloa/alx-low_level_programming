@@ -1,27 +1,21 @@
 #include "lists.h"
 
-
-
 /**
 
- * show_first - executes before the main function
+  *print - prints before main
 
- *
+  *
 
- * Return: nothing
+  *Return: void.
 
- */
+  */
 
-void startup(void)
+void print(void)
 
 {
 
-	char *str;
+	printf("You're beat! and yet, you must allow,");
 
-
-
-	str = "You're beat! and yet, you must allow,\nI bore my house upon my back!\n";
-
-	printf("%s", str);
+	printf("\nI bore my house upon my back!\n");
 
 }

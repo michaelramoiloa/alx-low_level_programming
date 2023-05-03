@@ -1,25 +1,40 @@
 #include "lists.h"
 
 /**
- * add_nodeint - adds a new node at the beginning of a linked list
- * @head: pointer to the first node in the list
- * @n: data to insert in that new node
+ * free_listint_safe - frees a linked list
+ * @h: pointer to the first node in the linked list
  *
- * Return: pointer to the new node, or NULL if it fails
+ * Return: number of elements in the freed list
  */
-listint_t *add_nodeint(listint_t **head, const int n)
+size_t free_listint_safe(listint_t **h)
 {
-	listint_t *new;
+	size_t len = 0;
+	int diff;
+	listint_t *temp;
 
-	new = malloc(sizeof(listint_t));
-	if (!new)
-		return (NULL);
+	if (!h || !*h)
+		return (0);
 
-	new->n = n;
-	new->next = *head;
-	*head = new;
+	while (*h)
+	{
+		diff = *h - (*h)->next;
+		if (diff > 0)
+		{
+			temp = (*h)->next;
+			free(*h);
+			*h = temp;
+			len++;
+		}
+		else
+		{
+			free(*h);
+			*h = NULL;
+			len++;
+			break;
+		}
+	}
 
-	return (new);
+	*h = NULL;
+
+	return (len);
 }
-Footer
-© 2023 GitHub, Inc.
